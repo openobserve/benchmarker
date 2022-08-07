@@ -4,7 +4,7 @@ metadata:
   name: locust-worker
   namespace: perf
 spec:
-  replicas: 4
+  replicas: 10
   selector:
     matchLabels:
       app: locust-worker
@@ -13,8 +13,18 @@ spec:
       labels:
         app: locust-worker
     spec:
-      nodeSelector:
-        node.kubernetes.io/instance-type: c6i.large
+      affinity:
+        podAntiAffinity:
+          preferredDuringSchedulingIgnoredDuringExecution:
+          - weight: 100
+            podAffinityTerm:
+              labelSelector:
+                matchExpressions:
+                - key: name
+                  operator: In
+                  values:
+                  - zinc
+              topologyKey: topology.kubernetes.io/zone
       containers:
       - name: locust-worker
         image: public.ecr.aws/docker/library/python:bullseye
