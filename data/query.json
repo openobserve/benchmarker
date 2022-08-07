@@ -1,0 +1,36 @@
+{
+  "query": {
+    "bool": {
+      "must": [
+        {
+          "range": {
+            "@timestamp": {
+              "gte": "2022-02-06T13:22:13.985Z",
+              "lt": "2022-08-06T12:22:13.985Z",
+              "format": "2006-01-02T15:04:05Z07:00"
+            }
+          }
+        },
+        {
+          "query_string": {
+            "query": "yahoo"
+          }
+        }
+      ]
+    }
+  },
+  "sort": [
+    "-@timestamp"
+  ],
+  "from": 0,
+  "size": 100,
+  "aggs": {
+    "histogram": {
+      "date_histogram": {
+        "field": "@timestamp",
+        "calendar_interval": "1d",
+        "fixed_interval": ""
+      }
+    }
+  }
+}

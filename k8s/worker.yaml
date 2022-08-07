@@ -1,0 +1,34 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: locust-worker
+  namespace: perf
+spec:
+  replicas: 4
+  selector:
+    matchLabels:
+      app: locust-worker
+  template:
+    metadata:
+      labels:
+        app: locust-worker
+    spec:
+      nodeSelector:
+        node.kubernetes.io/instance-type: c6i.large
+      containers:
+      - name: locust-worker
+        image: locustio/locust
+        command: ["/bin/sh","-c"]
+        args:
+          - git clone https://github.com/zinclabs/artist
+          - &&
+          - pip install -r requirements.txt
+          - &&
+          - locust
+          - --master-host=locust.perf.svc.cluster.local
+        resources:
+          limits:
+            memory: "800Mi"
+            cpu: "400m"
+
+

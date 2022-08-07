@@ -1,0 +1,45 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: locust
+  namespace: perf
+spec:
+  selector:
+    app: locust-leader
+  ports:
+  - port: 8089
+    targetPort: 8089
+
+
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: locust-leader
+  namespace: perf
+spec:
+  selector:
+    matchLabels:
+      app: locust-leader
+  template:
+    metadata:
+      labels:
+        app: locust-leader
+    spec:
+      containers:
+      - name: locust-leader
+        image: locustio/locust
+        command: ["/bin/sh","-c"]
+        args:
+          - git clone https://github.com/zinclabs/artist
+          - &&
+          - pip install -r requirements.txt
+          - &&
+          - locust
+          - --master
+        resources:
+          limits:
+            memory: "128Mi"
+            cpu: "500m"
+        ports:
+        - containerPort: 8089
