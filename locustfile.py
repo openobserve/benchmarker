@@ -4,9 +4,7 @@ import random
 from locust import FastHttpUser, task
 
 class ZincUser(FastHttpUser):
-
-    num = random.randint(1, 1000)
-    index = "bulkv2-" + str(num)
+    index = "bulkv2-1"
 
 
     # @task
