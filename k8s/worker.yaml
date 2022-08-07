@@ -17,15 +17,14 @@ spec:
         node.kubernetes.io/instance-type: c6i.large
       containers:
       - name: locust-worker
-        image: locustio/locust
+        image: public.ecr.aws/docker/library/python:bullseye
         command: ["/bin/sh","-c"]
         args:
-          - git clone https://github.com/zinclabs/artist
-          - &&
-          - pip install -r requirements.txt
-          - &&
-          - locust
-          - --master-host=locust.perf.svc.cluster.local
+         - pip install locust && 
+            git clone https://github.com/zinclabs/artist && 
+            cd artist && 
+            pip install -r requirements.txt && 
+            locust --worker --master-host=locust.perf.svc.cluster.local
         resources:
           limits:
             memory: "800Mi"

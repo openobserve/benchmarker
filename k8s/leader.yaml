@@ -4,12 +4,16 @@ metadata:
   name: locust
   namespace: perf
 spec:
+  clusterIP: None
   selector:
     app: locust-leader
   ports:
   - port: 8089
     targetPort: 8089
-
+    name: http
+  - port: 5557
+    targetPort: 5557
+    name:  tcp
 
 ---
 apiVersion: apps/v1
@@ -28,18 +32,20 @@ spec:
     spec:
       containers:
       - name: locust-leader
-        image: locustio/locust
+        image: public.ecr.aws/docker/library/python:bullseye
         command: ["/bin/sh","-c"]
         args:
-          - git clone https://github.com/zinclabs/artist
-          - &&
-          - pip install -r requirements.txt
-          - &&
-          - locust
-          - --master
+          # - apt-get update && apt-get install git -y
+          # - "&&"
+          - pip install locust && 
+            git clone https://github.com/zinclabs/artist && 
+            cd artist && 
+            pip install -r requirements.txt && 
+            locust --master
         resources:
           limits:
-            memory: "128Mi"
+            memory: "512Mi"
             cpu: "500m"
         ports:
         - containerPort: 8089
+        - containerPort: 5557
