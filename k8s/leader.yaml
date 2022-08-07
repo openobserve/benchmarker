@@ -35,8 +35,6 @@ spec:
         image: public.ecr.aws/docker/library/python:bullseye
         command: ["/bin/sh","-c"]
         args:
-          # - apt-get update && apt-get install git -y
-          # - "&&"
           - pip install locust && 
             git clone https://github.com/zinclabs/artist && 
             cd artist && 
