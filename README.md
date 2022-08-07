@@ -24,7 +24,9 @@ Enter the test details (server address and users) that you want to run and proce
 
 e.g. inputs:
 
+```pre
 server address: http://perf.dev.zinc.svc.cluster.local:4080
 Number of users: 100
 Spawn rate: 5 
+```
 
