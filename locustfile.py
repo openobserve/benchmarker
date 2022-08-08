@@ -4,7 +4,7 @@ import random
 from locust import FastHttpUser, task
 
 class ZincUser(FastHttpUser):
-    index = "perf1"
+    index = "perf2"
 
 
     # @task
