@@ -56,8 +56,8 @@ class ZincUser(FastHttpUser):
 
     @task
     def insert_multi_data(self):
-        ''' insert_data does a basic insert in zinc using bulkv2 api'''
-        data =  json.loads(open('data/multi.ndjson').read())
+        ''' insert_data does a basic insert in zinc using bulk api'''
+        data =  open('data/multi.ndjson').read()
 
         user = "admin"
         password = "Complexpass#123"
@@ -69,5 +69,4 @@ class ZincUser(FastHttpUser):
             'authorization': 'Basic ' + bas64encoded_creds, 
             'content-type': 'application/json'
         }
-
-        self.client.post("/api/"+ self.index + "_multi" + "/_multi", data=data, headers=headers)
+        self.client.post("/api/" + self.index + "_multi" + "/_multi", data=data, headers=headers)
