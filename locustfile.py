@@ -34,7 +34,7 @@ class ZincUser(FastHttpUser):
             'authorization': 'Basic ' + bas64encoded_creds, 
             'content-type': 'application/json'
         }
-        self.client.post("/api/" + self.index + "_bulk" + "/_bulk", data=data, headers=headers)
+        self.client.post("/api/" + self.index + "_bulk" , data=data, headers=headers)
     
     @task
     def insert_bulkv2_data(self):
@@ -52,7 +52,7 @@ class ZincUser(FastHttpUser):
             'content-type': 'application/json'
         }
 
-        self.client.post("/api/"+ self.index + "_bulkv2" + "/_bulkv2", json=data, headers=headers)
+        self.client.post("/api/"+ self.index + "_bulkv2" , json=data, headers=headers)
 
     @task
     def insert_multi_data(self):
@@ -69,4 +69,4 @@ class ZincUser(FastHttpUser):
             'authorization': 'Basic ' + bas64encoded_creds, 
             'content-type': 'application/json'
         }
-        self.client.post("/api/" + self.index + "_multi" + "/_multi", data=data, headers=headers)
+        self.client.post("/api/" + self.index + "_multi" , data=data, headers=headers)
