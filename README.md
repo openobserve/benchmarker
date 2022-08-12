@@ -18,7 +18,7 @@ Now let's go to the UI:
 kubectl -n perf port-forward svc/locust 8089:8089
 ```
 
-Open the browser and visit http://localhost:8989
+Open the browser and visit http://localhost:8089
 
 Enter the test details (server address and users) that you want to run and proceed. Ideally you want the zinc server to be running in the same cluster.
 
