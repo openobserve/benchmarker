@@ -1,0 +1,51 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: locust-worker
+  namespace: perf
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: locust-worker
+  template:
+    metadata:
+      labels:
+        app: locust-worker
+    spec:
+      affinity:
+        nodeAffinity: # place pods only on the specified instance type
+          requiredDuringSchedulingIgnoredDuringExecution:
+            nodeSelectorTerms:
+            - matchExpressions:
+              - key: node.kubernetes.io/instance-type
+                operator: In
+                values:
+                - c6i.large
+        podAntiAffinity:
+          preferredDuringSchedulingIgnoredDuringExecution:
+          - weight: 100
+            podAffinityTerm:
+              labelSelector:
+                matchExpressions:
+                - key: name
+                  operator: In
+                  values:
+                  - zinc
+              topologyKey: topology.kubernetes.io/zone
+      containers:
+      - name: locust-worker
+        image: public.ecr.aws/docker/library/python:bullseye
+        command: ["/bin/sh","-c"]
+        args:
+         - pip install locust && 
+            git clone https://github.com/zinclabs/artist && 
+            cd artist && 
+            pip install -r requirements.txt && 
+            locust --worker --master-host=locust.perf.svc.cluster.local
+        resources:
+          limits:
+            memory: "800Mi"
+            cpu: "400m"
+
+

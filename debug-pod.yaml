@@ -1,0 +1,14 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: locust-debug
+  labels:
+    app: locust-debug
+  namespace: perf
+spec:
+  containers:
+  - image: public.ecr.aws/docker/library/python:bullseye
+    command: ["sleep", "86400"]
+    imagePullPolicy: IfNotPresent
+    name: locust-debug
+  restartPolicy: Always
