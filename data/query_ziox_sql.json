@@ -1,0 +1,7 @@
+{
+    "query": {
+        "sql": "select * from k8s",
+        "from": 0,
+        "size": 10
+    }
+}

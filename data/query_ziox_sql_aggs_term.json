@@ -1,0 +1,10 @@
+{
+    "query": {
+        "sql": "select * from k8s",
+        "from": 0,
+        "size": 10
+    },
+    "aggs": {
+        "histogram": "select \"kubernetes.host\" AS key, count(*) AS num from query GROUP BY key ORDER BY num"
+    }
+}
