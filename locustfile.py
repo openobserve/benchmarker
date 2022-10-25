@@ -26,7 +26,7 @@ class ZincUser(FastHttpUser):
         self.client.post("/api/single/_search", json=data, headers=headers)
 
     @task
-    def search_basic(self):
+    def search_basic_match(self):
         ''' search_basic does a basic search for a given query'''
         data = json.loads(open('data/query_ziox_sql_match.json').read())
 
@@ -41,7 +41,7 @@ class ZincUser(FastHttpUser):
         self.client.post("/api/single/_search", json=data, headers=headers)
 
     @task
-    def search_basic(self):
+    def search_basic_match_all(self):
         ''' search_basic does a basic search for a given query'''
         data = json.loads(open('data/query_ziox_sql_match_all.json').read())
 
@@ -56,7 +56,7 @@ class ZincUser(FastHttpUser):
         self.client.post("/api/single/_search", json=data, headers=headers)
 
     @task
-    def search_basic(self):
+    def search_basic_match_all_case(self):
         ''' search_basic does a basic search for a given query'''
         data = json.loads(open('data/query_ziox_sql_match_all_case.json').read())
 
@@ -71,7 +71,7 @@ class ZincUser(FastHttpUser):
         self.client.post("/api/single/_search", json=data, headers=headers)
 
     @task
-    def search_basic(self):
+    def search_basic_aggs_term(self):
         ''' search_basic does a basic search for a given query'''
         data = json.loads(open('data/query_ziox_sql_aggs_term.json').read())
 
@@ -86,7 +86,7 @@ class ZincUser(FastHttpUser):
         self.client.post("/api/single/_search", json=data, headers=headers)
 
     @task
-    def search_basic(self):
+    def search_basic_aggs_histogram(self):
         ''' search_basic does a basic search for a given query'''
         data = json.loads(open('data/query_ziox_sql_aggs_histogram.json').read())
 
