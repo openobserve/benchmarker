@@ -1,6 +1,6 @@
 {
     "query": {
-        "sql": "select * from k8s where match(\"kubernetes.container_name\", 'fluent')",
+        "sql": "select * from k8s3 where match(\"kubernetes.container_name\", 'fluent')",
         "from": 0,
         "size": 10
     }

@@ -1,6 +1,6 @@
 {
     "query": {
-        "sql": "select * from k8s",
+        "sql": "select * from k8s3",
         "from": 0,
         "size": 10
     },
