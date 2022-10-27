@@ -23,7 +23,7 @@ class ZincUser(FastHttpUser):
             'authorization': 'Basic ' + bas64encoded_creds, 
             'content-type': 'application/json'
         }
-        self.client.post("/api/metrics/_search?sql", json=data, headers=headers)
+        self.client.post("/api/single/_search?sql", json=data, headers=headers)
 
     @task
     def search_basic_match(self):
@@ -38,7 +38,7 @@ class ZincUser(FastHttpUser):
             'authorization': 'Basic ' + bas64encoded_creds, 
             'content-type': 'application/json'
         }
-        self.client.post("/api/metrics/_search?sql_match", json=data, headers=headers)
+        self.client.post("/api/single/_search?sql_match", json=data, headers=headers)
 
     @task
     def search_basic_match_all(self):
@@ -53,7 +53,7 @@ class ZincUser(FastHttpUser):
             'authorization': 'Basic ' + bas64encoded_creds, 
             'content-type': 'application/json'
         }
-        self.client.post("/api/metrics/_search?sql_match_all", json=data, headers=headers)
+        self.client.post("/api/single/_search?sql_match_all", json=data, headers=headers)
 
     @task
     def search_basic_match_all_case(self):
@@ -68,7 +68,7 @@ class ZincUser(FastHttpUser):
             'authorization': 'Basic ' + bas64encoded_creds, 
             'content-type': 'application/json'
         }
-        self.client.post("/api/metrics/_search?sql_match_all_case", json=data, headers=headers)
+        self.client.post("/api/single/_search?sql_match_all_case", json=data, headers=headers)
 
     @task
     def search_basic_aggs_term(self):
@@ -83,7 +83,7 @@ class ZincUser(FastHttpUser):
             'authorization': 'Basic ' + bas64encoded_creds, 
             'content-type': 'application/json'
         }
-        self.client.post("/api/metrics/_search?sql_aggs_term", json=data, headers=headers)
+        self.client.post("/api/single/_search?sql_aggs_term", json=data, headers=headers)
 
     @task
     def search_basic_aggs_histogram(self):
@@ -98,7 +98,7 @@ class ZincUser(FastHttpUser):
             'authorization': 'Basic ' + bas64encoded_creds, 
             'content-type': 'application/json'
         }
-        self.client.post("/api/metrics/_search?sql_aggs_histogram", json=data, headers=headers)
+        self.client.post("/api/single/_search?sql_aggs_histogram", json=data, headers=headers)
 
     # @task
     # def multi_data(self):

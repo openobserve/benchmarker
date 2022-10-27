@@ -1,6 +1,6 @@
 {
     "query": {
-        "sql": "select * from k8s3 where match_all_no_case('fluent')",
+        "sql": "select * from k8s where match_all_no_case('fluent')",
         "from": 0,
         "size": 10
     }
