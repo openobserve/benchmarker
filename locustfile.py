@@ -8,7 +8,7 @@ class ZincUser(FastHttpUser):
 
     connection_timeout = 600.0
     network_timeout = 600.0
-    wait_time = between(1, 10)
+    # wait_time = between(1, 10)
 
     # @task
     # def search_basic(self):
