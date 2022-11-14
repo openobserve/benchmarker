@@ -10,100 +10,10 @@ class ZincUser(FastHttpUser):
     network_timeout = 600.0
     wait_time = between(1, 10)
 
-    @task
-    def search_basic(self):
-        ''' search_basic does a basic search for a given query'''
-        data = json.loads(open('data/query_ziox_sql.json').read())
-
-        user = "admin"
-        password = "Complexpass#123"
-        bas64encoded_creds = base64.b64encode(bytes(user + ":" + password, "utf-8")).decode("utf-8")
-
-        headers = {
-            'authorization': 'Basic ' + bas64encoded_creds, 
-            'content-type': 'application/json'
-        }
-        self.client.post("/api/single/_search?sql", json=data, headers=headers)
-
-    @task
-    def search_basic_match(self):
-        ''' search_basic does a basic search for a given query'''
-        data = json.loads(open('data/query_ziox_sql_match.json').read())
-
-        user = "admin"
-        password = "Complexpass#123"
-        bas64encoded_creds = base64.b64encode(bytes(user + ":" + password, "utf-8")).decode("utf-8")
-
-        headers = {
-            'authorization': 'Basic ' + bas64encoded_creds, 
-            'content-type': 'application/json'
-        }
-        self.client.post("/api/single/_search?sql_match", json=data, headers=headers)
-
-    @task
-    def search_basic_match_all(self):
-        ''' search_basic does a basic search for a given query'''
-        data = json.loads(open('data/query_ziox_sql_match_all.json').read())
-
-        user = "admin"
-        password = "Complexpass#123"
-        bas64encoded_creds = base64.b64encode(bytes(user + ":" + password, "utf-8")).decode("utf-8")
-
-        headers = {
-            'authorization': 'Basic ' + bas64encoded_creds, 
-            'content-type': 'application/json'
-        }
-        self.client.post("/api/single/_search?sql_match_all", json=data, headers=headers)
-
-    @task
-    def search_basic_match_all_case(self):
-        ''' search_basic does a basic search for a given query'''
-        data = json.loads(open('data/query_ziox_sql_match_all_case.json').read())
-
-        user = "admin"
-        password = "Complexpass#123"
-        bas64encoded_creds = base64.b64encode(bytes(user + ":" + password, "utf-8")).decode("utf-8")
-
-        headers = {
-            'authorization': 'Basic ' + bas64encoded_creds, 
-            'content-type': 'application/json'
-        }
-        self.client.post("/api/single/_search?sql_match_all_case", json=data, headers=headers)
-
-    @task
-    def search_basic_aggs_term(self):
-        ''' search_basic does a basic search for a given query'''
-        data = json.loads(open('data/query_ziox_sql_aggs_term.json').read())
-
-        user = "admin"
-        password = "Complexpass#123"
-        bas64encoded_creds = base64.b64encode(bytes(user + ":" + password, "utf-8")).decode("utf-8")
-
-        headers = {
-            'authorization': 'Basic ' + bas64encoded_creds, 
-            'content-type': 'application/json'
-        }
-        self.client.post("/api/single/_search?sql_aggs_term", json=data, headers=headers)
-
-    @task
-    def search_basic_aggs_histogram(self):
-        ''' search_basic does a basic search for a given query'''
-        data = json.loads(open('data/query_ziox_sql_aggs_histogram.json').read())
-
-        user = "admin"
-        password = "Complexpass#123"
-        bas64encoded_creds = base64.b64encode(bytes(user + ":" + password, "utf-8")).decode("utf-8")
-
-        headers = {
-            'authorization': 'Basic ' + bas64encoded_creds, 
-            'content-type': 'application/json'
-        }
-        self.client.post("/api/single/_search?sql_aggs_histogram", json=data, headers=headers)
-
     # @task
-    # def multi_data(self):
-    #     '''multi_data does a multi insert in zinc using multi api'''
-    #     data = open('data/ziox_multi.json').read()
+    # def search_basic(self):
+    #     ''' search_basic does a basic search for a given query'''
+    #     data = json.loads(open('data/query_ziox_sql.json').read())
 
     #     user = "admin"
     #     password = "Complexpass#123"
@@ -113,7 +23,97 @@ class ZincUser(FastHttpUser):
     #         'authorization': 'Basic ' + bas64encoded_creds, 
     #         'content-type': 'application/json'
     #     }
-    #     self.client.post("/api/metrics/k8s3/_multi", data=data, headers=headers)
+    #     self.client.post("/api/single/_search?sql", json=data, headers=headers)
+
+    # @task
+    # def search_basic_match(self):
+    #     ''' search_basic does a basic search for a given query'''
+    #     data = json.loads(open('data/query_ziox_sql_match.json').read())
+
+    #     user = "admin"
+    #     password = "Complexpass#123"
+    #     bas64encoded_creds = base64.b64encode(bytes(user + ":" + password, "utf-8")).decode("utf-8")
+
+    #     headers = {
+    #         'authorization': 'Basic ' + bas64encoded_creds, 
+    #         'content-type': 'application/json'
+    #     }
+    #     self.client.post("/api/single/_search?sql_match", json=data, headers=headers)
+
+    # @task
+    # def search_basic_match_all(self):
+    #     ''' search_basic does a basic search for a given query'''
+    #     data = json.loads(open('data/query_ziox_sql_match_all.json').read())
+
+    #     user = "admin"
+    #     password = "Complexpass#123"
+    #     bas64encoded_creds = base64.b64encode(bytes(user + ":" + password, "utf-8")).decode("utf-8")
+
+    #     headers = {
+    #         'authorization': 'Basic ' + bas64encoded_creds, 
+    #         'content-type': 'application/json'
+    #     }
+    #     self.client.post("/api/single/_search?sql_match_all", json=data, headers=headers)
+
+    # @task
+    # def search_basic_match_all_case(self):
+    #     ''' search_basic does a basic search for a given query'''
+    #     data = json.loads(open('data/query_ziox_sql_match_all_case.json').read())
+
+    #     user = "admin"
+    #     password = "Complexpass#123"
+    #     bas64encoded_creds = base64.b64encode(bytes(user + ":" + password, "utf-8")).decode("utf-8")
+
+    #     headers = {
+    #         'authorization': 'Basic ' + bas64encoded_creds, 
+    #         'content-type': 'application/json'
+    #     }
+    #     self.client.post("/api/single/_search?sql_match_all_case", json=data, headers=headers)
+
+    # @task
+    # def search_basic_aggs_term(self):
+    #     ''' search_basic does a basic search for a given query'''
+    #     data = json.loads(open('data/query_ziox_sql_aggs_term.json').read())
+
+    #     user = "admin"
+    #     password = "Complexpass#123"
+    #     bas64encoded_creds = base64.b64encode(bytes(user + ":" + password, "utf-8")).decode("utf-8")
+
+    #     headers = {
+    #         'authorization': 'Basic ' + bas64encoded_creds, 
+    #         'content-type': 'application/json'
+    #     }
+    #     self.client.post("/api/single/_search?sql_aggs_term", json=data, headers=headers)
+
+    # @task
+    # def search_basic_aggs_histogram(self):
+    #     ''' search_basic does a basic search for a given query'''
+    #     data = json.loads(open('data/query_ziox_sql_aggs_histogram.json').read())
+
+    #     user = "admin"
+    #     password = "Complexpass#123"
+    #     bas64encoded_creds = base64.b64encode(bytes(user + ":" + password, "utf-8")).decode("utf-8")
+
+    #     headers = {
+    #         'authorization': 'Basic ' + bas64encoded_creds, 
+    #         'content-type': 'application/json'
+    #     }
+    #     self.client.post("/api/single/_search?sql_aggs_histogram", json=data, headers=headers)
+
+    @task
+    def multi_data(self):
+        '''multi_data does a multi insert in zinc using multi api'''
+        data = open('data/ziox_multi.json').read()
+
+        user = "admin"
+        password = "Complexpass#123"
+        bas64encoded_creds = base64.b64encode(bytes(user + ":" + password, "utf-8")).decode("utf-8")
+
+        headers = {
+            'authorization': 'Basic ' + bas64encoded_creds, 
+            'content-type': 'application/json'
+        }
+        self.client.post("/api/pb/k8s/_multi", data=data, headers=headers)
 
     # @task
     # def insert_bulk_data(self):
