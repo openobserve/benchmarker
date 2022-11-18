@@ -113,7 +113,7 @@ class ZincUser(FastHttpUser):
             'authorization': 'Basic ' + bas64encoded_creds, 
             'content-type': 'application/json'
         }
-        self.client.post("/api/perf1117/k8s/_multi", data=data, headers=headers)
+        self.client.post("/api/perf1118/k8s/_multi", data=data, headers=headers)
 
     # @task
     # def insert_bulk_data(self):
