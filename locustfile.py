@@ -5,7 +5,7 @@ from locust import FastHttpUser, task, between
 
 class ZincUser(FastHttpUser):
     org_id = "perf1121"
-    index = "k8s"
+    index = "k8s2"
 
     connection_timeout = 600.0
     network_timeout = 600.0
