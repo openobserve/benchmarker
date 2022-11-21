@@ -4,7 +4,8 @@ import random
 from locust import FastHttpUser, task, between
 
 class ZincUser(FastHttpUser):
-    index = "perf3"
+    org_id = "perf1121"
+    index = "k8s"
 
     connection_timeout = 600.0
     network_timeout = 600.0
@@ -113,7 +114,7 @@ class ZincUser(FastHttpUser):
             'authorization': 'Basic ' + bas64encoded_creds, 
             'content-type': 'application/json'
         }
-        self.client.post("/api/perf1118/k8s/_multi", data=data, headers=headers)
+        self.client.post("/api/" + self.org_id + "/" + self.index + "/_multi", data=data, headers=headers)
 
     # @task
     # def insert_bulk_data(self):
