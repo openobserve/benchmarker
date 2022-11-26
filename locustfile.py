@@ -4,7 +4,7 @@ import random
 from locust import FastHttpUser, task, between
 
 class ZincUser(FastHttpUser):
-    org_id = "perf1126"
+    org_id = "perf2"
     index = "k8s"
 
     connection_timeout = 600.0
@@ -104,7 +104,7 @@ class ZincUser(FastHttpUser):
     @task
     def multi_data(self):
         '''multi_data does a multi insert in zinc using multi api'''
-        data = open('data/ziox_multi_small.json').read()
+        data = open('data/ziox_multi.json').read()
 
         user = "admin"
         password = "Complexpass#123"
