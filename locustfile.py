@@ -20,7 +20,7 @@ class ZincUser(FastHttpUser):
 
     ## --- for prometheus --- ##
 
-    # @task
+    @task
     def range_query_rate(self): 
         ''' rate '''
         self.client.get("/api/v1/query_range?query=sum%20by(endpoint)%20(rate(zo_http_incoming_requests%7Bnamespace%3D%22ziox-alpha1%22%2Corganization%3D%22default%22%7D%5B5m%5D))&start=1682663110&end=1682664910&step=15&db=prometheus", data="", headers={})
