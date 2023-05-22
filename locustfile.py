@@ -20,7 +20,7 @@ class ZincUser(FastHttpUser):
 
     ## --- for prometheus --- ##
 
-    @task
+    """ @task
     def range_query_rate(self): 
         ''' rate '''
         self.client.get("/api/v1/query_range?query=sum%20by(endpoint)%20(rate(zo_http_incoming_requests%7Bnamespace%3D%22ziox-alpha1%22%2Corganization%3D%22default%22%7D%5B5m%5D))&start=1682663110&end=1682664910&step=15&db=prometheus", data="", headers={})
@@ -39,7 +39,7 @@ class ZincUser(FastHttpUser):
     def range_query_delta(self): 
         ''' delta '''
         self.client.get("/api/v1/query_range?query=sum%20by(stream_type)%20(delta(zo_storage_files%7Bnamespace%3D%22ziox-alpha1%22%2Corganization%3D%22default%22%7D%5B5m%5D))&start=1682663110&end=1682664910&step=15&db=prometheus", data="", headers={})
-
+ """
     # @task
     # def range_query_histogram(self): 
     #     ''' histogram '''
@@ -211,19 +211,19 @@ class ZincUser(FastHttpUser):
 
     #     self.client.post("/api/"+ self.index + "_bulkv2" + "/_bulkv2", json=data, headers=headers)
 
-    # @task
-    # def insert_multi_data(self):
-    #     ''' insert_data does a basic insert in zinc using bulk api'''
-    #     data =  open('data/multi.ndjson').read()
+     @task
+     def insert_multi_data(self):
+         ''' insert_data does a basic insert in zinc using multi api'''
+         data =  open('data/ziox_multi.json').read()
 
-    #     user = "admin"
-    #     password = "Complexpass#123"
-    #     # user = "admin"
-    #     # password = "admin"
-    #     bas64encoded_creds = base64.b64encode(bytes(user + ":" + password, "utf-8")).decode("utf-8")
+         user = "root@example.com"
+         password = "Complexpass#123"
+         # user = "admin"
+         # password = "admin"
+         bas64encoded_creds = base64.b64encode(bytes(user + ":" + password, "utf-8")).decode("utf-8")
 
-    #     headers = {
-    #         'authorization': 'Basic ' + bas64encoded_creds, 
-    #         'content-type': 'application/json'
-    #     }
-    #     self.client.post("/api/" + self.index + "_multi" + "/_multi", data=data, headers=headers)
+         headers = {
+             'authorization': 'Basic ' + bas64encoded_creds, 
+             'content-type': 'application/json'
+         }
+         self.client.post("/api/" + self.index + "_multi" + "/_multi", data=data, headers=headers)
