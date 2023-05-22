@@ -226,4 +226,4 @@ class ZincUser(FastHttpUser):
             'authorization': 'Basic ' + bas64encoded_creds, 
             'content-type': 'application/json'
         }
-        self.client.post("/api/" + self.index + "_multi" + "/_multi", data=data, headers=headers)
+        self.client.post("/api/default/" + self.index + "_multi" + "/_multi", data=data, headers=headers)
