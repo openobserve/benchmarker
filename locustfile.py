@@ -211,27 +211,10 @@ class ZincUser(FastHttpUser):
 
     #     self.client.post("/api/"+ self.index + "_bulkv2" + "/_bulkv2", json=data, headers=headers)
 
-    # @task
-    # def insert_multi_data(self):
-    #     ''' insert_data does a basic insert in zinc using multi api'''
-    #     data =  open('data/ziox_multi.json').read()
-
-    #     user = "root@example.com"
-    #     password = "Complexpass#123"
-    #     # user = "admin"
-    #     # password = "admin"
-    #     bas64encoded_creds = base64.b64encode(bytes(user + ":" + password, "utf-8")).decode("utf-8")
-
-    #     headers = {
-    #         'authorization': 'Basic ' + bas64encoded_creds, 
-    #         'content-type': 'application/json'
-    #     }
-    #     self.client.post("/api/default/" + self.index + "_multi" + "/_multi", data=data, headers=headers)
-
     @task
-    def insert_json_data(self):
+    def insert_multi_data(self):
         ''' insert_data does a basic insert in zinc using multi api'''
-        data =  open('data/ziox_json_api.json').read()
+        data =  open('data/ziox_multi.json').read()
 
         user = "root@example.com"
         password = "Complexpass#123"
@@ -243,4 +226,21 @@ class ZincUser(FastHttpUser):
             'authorization': 'Basic ' + bas64encoded_creds, 
             'content-type': 'application/json'
         }
-        self.client.post("/api/default/" + self.index + "_json" + "/_json", data=data, headers=headers)    
+        self.client.post("/api/default/" + self.index + "_multi" + "/_multi", data=data, headers=headers)
+
+    # @task
+    # def insert_json_data(self):
+    #     ''' insert_data does a basic insert in zinc using multi api'''
+    #     data =  open('data/ziox_json_api.json').read()
+
+    #     user = "root@example.com"
+    #     password = "Complexpass#123"
+    #     # user = "admin"
+    #     # password = "admin"
+    #     bas64encoded_creds = base64.b64encode(bytes(user + ":" + password, "utf-8")).decode("utf-8")
+
+    #     headers = {
+    #         'authorization': 'Basic ' + bas64encoded_creds, 
+    #         'content-type': 'application/json'
+    #     }
+    #     self.client.post("/api/default/" + self.index + "_json" + "/_json", data=data, headers=headers)    
