@@ -231,7 +231,7 @@ class ZincUser(FastHttpUser):
     @task
     def insert_json_data(self):
         ''' insert_data does a basic insert in zinc using multi api'''
-        data =  open('data/ziox_json_api.json').read()
+        data =  open('data/ziox_json_api_small.json').read()
 
         user = "root@example.com"
         password = "Complexpass#123"

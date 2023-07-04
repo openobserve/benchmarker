@@ -18,10 +18,10 @@ spec:
           requiredDuringSchedulingIgnoredDuringExecution:
             nodeSelectorTerms:
             - matchExpressions:
-              - key: node.kubernetes.io/instance-type
+              - key: eks.amazonaws.com/nodegroup
                 operator: In
                 values:
-                - c6i.large
+                - zo-locust
         podAntiAffinity:
           preferredDuringSchedulingIgnoredDuringExecution:
           - weight: 100
