@@ -11,7 +11,6 @@ class ZincUser(FastHttpUser):
     network_timeout = 600.0
     # wait_time = between(1, 10)
 
-
     ## sum by(endpoint) (rate(zo_http_incoming_requests{namespace="ziox-alpha1",organization="default"}[5m]))
     ## sum by(endpoint) (irate(zo_http_incoming_requests{namespace="ziox-alpha1",organization="default"}[5m]))
     ## sum by(endpoint) (increase(zo_http_incoming_requests{namespace="ziox-alpha1",organization="default"}[5m]))
@@ -20,26 +19,26 @@ class ZincUser(FastHttpUser):
 
     ## --- for prometheus --- ##
 
-    """ @task
-    def range_query_rate(self): 
-        ''' rate '''
-        self.client.get("/api/v1/query_range?query=sum%20by(endpoint)%20(rate(zo_http_incoming_requests%7Bnamespace%3D%22ziox-alpha1%22%2Corganization%3D%22default%22%7D%5B5m%5D))&start=1682663110&end=1682664910&step=15&db=prometheus", data="", headers={})
+    # @task
+    # def range_query_rate(self): 
+    #     ''' rate '''
+    #     self.client.get("/api/v1/query_range?query=sum%20by(endpoint)%20(rate(zo_http_incoming_requests%7Bnamespace%3D%22ziox-alpha1%22%2Corganization%3D%22default%22%7D%5B5m%5D))&start=1682663110&end=1682664910&step=15&db=prometheus", data="", headers={})
 
-    @task
-    def range_query_irate(self): 
-        ''' irate '''
-        self.client.get("/api/v1/query_range?query=sum%20by(endpoint)%20(irate(zo_http_incoming_requests%7Bnamespace%3D%22ziox-alpha1%22%2Corganization%3D%22default%22%7D%5B5m%5D))&start=1682663110&end=1682664910&step=15&db=prometheus", data="", headers={})
+    # @task
+    # def range_query_irate(self): 
+    #     ''' irate '''
+    #     self.client.get("/api/v1/query_range?query=sum%20by(endpoint)%20(irate(zo_http_incoming_requests%7Bnamespace%3D%22ziox-alpha1%22%2Corganization%3D%22default%22%7D%5B5m%5D))&start=1682663110&end=1682664910&step=15&db=prometheus", data="", headers={})
 
-    @task
-    def range_query_increase(self): 
-        ''' increase '''
-        self.client.get("/api/v1/query_range?query=sum%20by(endpoint)%20(increase(zo_http_incoming_requests%7Bnamespace%3D%22ziox-alpha1%22%2Corganization%3D%22default%22%7D%5B5m%5D))&start=1682663110&end=1682664910&step=15&db=prometheus", data="", headers={})
+    # @task
+    # def range_query_increase(self): 
+    #     ''' increase '''
+    #     self.client.get("/api/v1/query_range?query=sum%20by(endpoint)%20(increase(zo_http_incoming_requests%7Bnamespace%3D%22ziox-alpha1%22%2Corganization%3D%22default%22%7D%5B5m%5D))&start=1682663110&end=1682664910&step=15&db=prometheus", data="", headers={})
 
-    @task
-    def range_query_delta(self): 
-        ''' delta '''
-        self.client.get("/api/v1/query_range?query=sum%20by(stream_type)%20(delta(zo_storage_files%7Bnamespace%3D%22ziox-alpha1%22%2Corganization%3D%22default%22%7D%5B5m%5D))&start=1682663110&end=1682664910&step=15&db=prometheus", data="", headers={})
- """
+    # @task
+    # def range_query_delta(self): 
+    #     ''' delta '''
+    #     self.client.get("/api/v1/query_range?query=sum%20by(stream_type)%20(delta(zo_storage_files%7Bnamespace%3D%22ziox-alpha1%22%2Corganization%3D%22default%22%7D%5B5m%5D))&start=1682663110&end=1682664910&step=15&db=prometheus", data="", headers={})
+ 
     # @task
     # def range_query_histogram(self): 
     #     ''' histogram '''
@@ -243,4 +242,4 @@ class ZincUser(FastHttpUser):
             'authorization': 'Basic ' + bas64encoded_creds, 
             'content-type': 'application/json'
         }
-        self.client.post("/api/default/" + self.index + "_json111" + "/_json", data=data, headers=headers)
+        self.client.post("/api/default/" + self.index + "_json_111" + "/_json", data=data, headers=headers)
