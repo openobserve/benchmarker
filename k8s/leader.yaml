@@ -30,18 +30,18 @@ spec:
       labels:
         app: locust-leader
     spec:
-      affinity:
-        nodeAffinity: # place pods only on the specified instance type
-          requiredDuringSchedulingIgnoredDuringExecution:
-            nodeSelectorTerms:
-            - matchExpressions:
-              - key: node.kubernetes.io/instance-type
-                operator: In
-                values:
-                - c6i.large
+      # affinity:
+      #   nodeAffinity: # place pods only on the specified instance type
+      #     requiredDuringSchedulingIgnoredDuringExecution:
+      #       nodeSelectorTerms:
+      #       - matchExpressions:
+      #         - key: node.kubernetes.io/instance-type
+      #           operator: In
+      #           values:
+      #           - c6i.large
       containers:
       - name: locust-leader
-        image: public.ecr.aws/docker/library/python:bullseye
+        image: public.ecr.aws/docker/library/python:3.9.18-bookworm
         command: ["/bin/sh","-c"]
         args:
           - pip install locust && 
