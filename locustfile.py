@@ -227,19 +227,36 @@ class ZincUser(FastHttpUser):
     #     }
     #     self.client.post("/api/default/" + self.index + "_multi" + "/_multi", data=data, headers=headers)
 
-    @task
-    def insert_json_data(self):
-        ''' insert_data does a basic insert in zinc using multi api'''
-        data =  open('data/k8slog.json').read()
+    # @task
+    # def insert_json_data(self):
+    #     ''' insert_data does a basic insert in zinc using multi api'''
+    #     data =  open('data/k8slog.json').read()
 
-        user = "root@example.com"
-        password = "Complexpass#123"
+    #     user = "root@example.com"
+    #     password = "Complexpass#123"
+    #     # user = "admin"
+    #     # password = "admin"
+    #     bas64encoded_creds = base64.b64encode(bytes(user + ":" + password, "utf-8")).decode("utf-8")
+
+    #     headers = {
+    #         'authorization': 'Basic ' + bas64encoded_creds, 
+    #         'content-type': 'application/json'
+    #     }
+    #     self.client.post("/api/default/" + self.index + "_json_111" + "/_json", data=data, headers=headers)
+    
+    @task
+    def insert_ndjson_data(self):
+        ''' insert_data does a basic insert in zinc using multi api'''
+        data =  open('data/k8slog.ndjson').read()
+
+        user = "Wq9I9owBuYyq6Mnb7M-E"
+        password = "Me2kGXlAQ-eWZrL6ZXzjLw"
         # user = "admin"
         # password = "admin"
         bas64encoded_creds = base64.b64encode(bytes(user + ":" + password, "utf-8")).decode("utf-8")
 
         headers = {
-            'authorization': 'Basic ' + bas64encoded_creds, 
+            'authorization': 'Apikey ' + bas64encoded_creds, 
             'content-type': 'application/json'
         }
-        self.client.post("/api/default/" + self.index + "_json_111" + "/_json", data=data, headers=headers)
+        self.client.post("/_bulk", data=data, headers=headers)
