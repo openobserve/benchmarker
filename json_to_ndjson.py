@@ -12,12 +12,12 @@ def convert_to_ndjson(input_file, output_file):
         for item in data:
             # Convert the JSON object to a string and write it to the file
             # with a newline character
-            file.write(header)
+            # file.write(header)
             file.write(json.dumps(item) + '\n')
 
 # File names
 input_file = 'data/k8slog.json'
-output_file = 'data/k8slog.ndjson'
+output_file = 'data/k8slog_formatted.ndjson'
 
 # Convert the file
 convert_to_ndjson(input_file, output_file)
