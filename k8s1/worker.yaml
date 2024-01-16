@@ -42,7 +42,7 @@ spec:
             git clone https://github.com/zinclabs/artist && 
             cd artist && 
             pip install -r requirements.txt && 
-            locust --worker --master-host=locust -f locustfile1.py
+            locust -f locustfile1.py --worker --master-host=locust -f locustfile1.py
         resources:
           limits:
             memory: "800Mi"
