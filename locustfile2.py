@@ -17,7 +17,7 @@ class ZincUser(FastHttpUser):
         data =  open('data/k8slog.ndjson').read()
 
         user = "elastic"
-        password = "YBtCaMBvFERPcUh8y8H1CGN8"
+        password = "gkJDTm3U7u0YJhULQPkPf2mI"
         # user = "admin"
         # password = "admin"
         bas64encoded_creds = base64.b64encode(bytes(user + ":" + password, "utf-8")).decode("utf-8")
