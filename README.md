@@ -5,9 +5,9 @@ Performance benchamrking tool for ZincSearch. It uses [Locust]()
 Test requires a k8s cluster.
 
 ```shell
-kubectl create ns perf
-kubectl apply -f k8s/leader.yaml
-kubectl apply -f k8s/worker.yaml
+kubectl create ns perf1
+kubectl apply -f k8s1/leader.yaml
+kubectl apply -f k8s1/worker.yaml
 ```
 
 Worker manifest sets worker count to 10. You can change that based on your needs.
@@ -15,7 +15,7 @@ Worker manifest sets worker count to 10. You can change that based on your needs
 Now let's go to the UI:
 
 ```shell
-kubectl -n perf port-forward svc/locust 8089:8089
+kubectl -n perf1 port-forward svc/locust 8089:8089
 ```
 
 Open the browser and visit http://localhost:8089
