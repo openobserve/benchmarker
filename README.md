@@ -10,12 +10,19 @@ kubectl apply -f k8s1/leader.yaml
 kubectl apply -f k8s1/worker.yaml
 ```
 
+```shell
+kubectl create ns perf2
+kubectl apply -f k8s2/leader.yaml
+kubectl apply -f k8s2/worker.yaml
+```
+
 Worker manifest sets worker count to 10. You can change that based on your needs.
 
 Now let's go to the UI:
 
 ```shell
 kubectl -n perf1 port-forward svc/locust 8089:8089
+kubectl -n perf2 port-forward svc/locust 8090:8089
 ```
 
 Open the browser and visit http://localhost:8089
