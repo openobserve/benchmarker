@@ -35,7 +35,7 @@ for i in range(fields_to_add):
     data[f"dummy_field_{i+1}"] = f"dummy_value_{i+1}"
 
 # Now create an array of 1000 objects with the new structure
-data_array = [data.copy() for _ in range(100)]
+data_array = [data.copy() for _ in range(50)]
 
 # If you need to output this to a JSON file:
 with open('data.json', 'w') as f:
