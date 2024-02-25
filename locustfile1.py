@@ -4,8 +4,7 @@ import random
 from locust import FastHttpUser, task, between
 
 class ZincUser(FastHttpUser):
-    org_id = "perf"
-    index = "k8s"
+    stream = "k8s2"
 
     connection_timeout = 600.0
     network_timeout = 600.0
@@ -25,5 +24,5 @@ class ZincUser(FastHttpUser):
             'authorization': 'Basic ' + bas64encoded_creds, 
             'content-type': 'application/json'
         }
-        self.client.post("/api/default/" + self.index + "/_json", data=data, headers=headers)
+        self.client.post("/api/default/" + self.stream + "/_json", data=data, headers=headers)
     
