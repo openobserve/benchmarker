@@ -33,6 +33,6 @@ e.g. inputs:
 
 ```pre
 server address: http://perf.dev.zinc.svc.cluster.local:4080
-Number of users: 100
+Number of users: 10
 Spawn rate: 5 
 ```
