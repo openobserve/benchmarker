@@ -32,7 +32,7 @@ Enter the test details (server address and users) that you want to run and proce
 e.g. inputs:
 
 ```pre
-server address: http://perf.dev.zinc.svc.cluster.local:4080
+server address: http://o2-openobserve-ingester.o2.svc.cluster.local:5080
 Number of users: 10
 Spawn rate: 5 
 ```
