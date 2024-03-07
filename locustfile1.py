@@ -4,7 +4,7 @@ import random
 from locust import FastHttpUser, task, between
 
 class ZincUser(FastHttpUser):
-    stream = "atlas"
+    stream = "rc3_no_index_normal"
 
     connection_timeout = 600.0
     network_timeout = 600.0
