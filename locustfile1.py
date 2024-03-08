@@ -4,7 +4,7 @@ import random
 from locust import FastHttpUser, task, between
 
 class ZincUser(FastHttpUser):
-    stream = "v0_9_0_rc3_amd64_index"
+    stream = "1000_fields"
 
     connection_timeout = 600.0
     network_timeout = 600.0
@@ -12,7 +12,7 @@ class ZincUser(FastHttpUser):
     @task
     def insert_json_data1(self):
         ''' insert_data does a basic insert in zinc using multi api'''
-        data =  open('data/k8slog_2.1MB.json').read()
+        data =  open('data/50_records_1000_fields_2.2MB.json').read()
 
         user = "root@example.com"
         password = "Complexpass#123"
