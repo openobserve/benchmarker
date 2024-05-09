@@ -71,23 +71,21 @@ class O2User(FastHttpUser):
         with open(self.f2) as f:
             self.data['f2'] = json.load(f)
 
-        # self.load_f3()
+        self.load_f3()
 
-    @task(10)
-    def json_log_ingestion_f1(self):
-        user = "root@example.com"
-        password = "Complexpass#123"
-        bas64encoded_creds = base64.b64encode(bytes(user + ":" + password, "utf-8")).decode("utf-8")
-        headers = {
-            'authorization': 'Basic ' + bas64encoded_creds, 
-            'content-type': 'application/json',
-        }
-        self.client.post(self.json_ep, json=self.data['f1'], headers=headers)
+    # @task
+    # def json_log_ingestion_f1(self):
+    #     user = "root@example.com"
+    #     password = "Complexpass#123"
+    #     bas64encoded_creds = base64.b64encode(bytes(user + ":" + password, "utf-8")).decode("utf-8")
+    #     headers = {
+    #         'authorization': 'Basic ' + bas64encoded_creds, 
+    #         'content-type': 'application/json',
+    #     }
+    #     self.client.post(self.json_ep, json=self.data['f1'], headers=headers)
 
-    # @task(10)
+    # @task
     # def json_log_ingestion_f2(self):
-    #     # 8.8m/req
-    #     # 100 users * 10req/user * 8.8m/req
     #     user = "root@example.com"
     #     password = "Complexpass#123"
     #     bas64encoded_creds = base64.b64encode(bytes(user + ":" + password, "utf-8")).decode("utf-8")
@@ -97,13 +95,13 @@ class O2User(FastHttpUser):
     #     }
     #     self.client.post(self.json_ep, json=self.data['f2'], headers=headers)
 
-    # @task
-    # def insert_ndjson_data(self):
-    #     user = "root@example.com"
-    #     password = "Complexpass#123"
-    #     bas64encoded_creds = base64.b64encode(bytes(user + ":" + password, "utf-8")).decode("utf-8")
-    #     headers = {
-    #         'authorization': 'Basic ' + bas64encoded_creds, 
-    #         'Content-Type': 'application/x-ndjson'
-    #     }
-    #     self.client.post(self.bulk_ep, data=self.data['f3'], headers=headers)
+    @task
+    def insert_ndjson_data(self):
+        user = "root@example.com"
+        password = "Complexpass#123"
+        bas64encoded_creds = base64.b64encode(bytes(user + ":" + password, "utf-8")).decode("utf-8")
+        headers = {
+            'authorization': 'Basic ' + bas64encoded_creds, 
+            'Content-Type': 'application/x-ndjson'
+        }
+        self.client.post(self.bulk_ep, data=self.data['f3'], headers=headers)
