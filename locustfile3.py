@@ -3,9 +3,6 @@ import random
 
 from locust import FastHttpUser, task, between
 
-import json
-import random
-
 # Function to generate a random value of a specified type
 def generate_random_value(value_type):
     if value_type == "int":
@@ -73,7 +70,7 @@ class O2User(FastHttpUser):
 
         self.load_f3()
 
-    @task(10)
+    @task
     def json_log_ingestion_f1(self):
         user = "root@example.com"
         password = "Complexpass#123"
@@ -84,7 +81,7 @@ class O2User(FastHttpUser):
         }
         self.client.post(self.json_ep, json=self.data['f1'], headers=headers)
 
-    @task(10)
+    @task
     def json_log_ingestion_f2(self):
         user = "root@example.com"
         password = "Complexpass#123"
@@ -95,13 +92,13 @@ class O2User(FastHttpUser):
         }
         self.client.post(self.json_ep, json=self.data['f2'], headers=headers)
 
-    # @task
-    # def insert_ndjson_data(self):
-    #     user = "root@example.com"
-    #     password = "Complexpass#123"
-    #     bas64encoded_creds = base64.b64encode(bytes(user + ":" + password, "utf-8")).decode("utf-8")
-    #     headers = {
-    #         'authorization': 'Basic ' + bas64encoded_creds, 
-    #         'Content-Type': 'application/x-ndjson'
-    #     }
-    #     self.client.post(self.bulk_ep, data=self.data['f3'], headers=headers)
+    @task
+    def insert_ndjson_data(self):
+        user = "root@example.com"
+        password = "Complexpass#123"
+        bas64encoded_creds = base64.b64encode(bytes(user + ":" + password, "utf-8")).decode("utf-8")
+        headers = {
+            'authorization': 'Basic ' + bas64encoded_creds, 
+            'Content-Type': 'application/x-ndjson'
+        }
+        self.client.post(self.bulk_ep, data=self.data['f3'], headers=headers)
