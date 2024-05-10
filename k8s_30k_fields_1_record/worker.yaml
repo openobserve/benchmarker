@@ -39,7 +39,7 @@ spec:
         command: ["/bin/sh","-c"]
         args:
          - pip install locust && 
-            git clone https://github.com/zinclabs/artist && 
+            git clone https://github.com/openobserve/benchmarker && 
             cd artist && 
             pip install -r requirements.txt && 
             locust -f locustfile_30k_fields.py --worker --master-host=locust 
