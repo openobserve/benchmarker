@@ -46,7 +46,7 @@ spec:
         args:
           - pip install locust && 
             git clone https://github.com/openobserve/benchmarker && 
-            cd artist && 
+            cd benchmarker && 
             pip install -r requirements.txt && 
             locust --master --web-auth admin:admin -f locustfile3.py
         resources:
