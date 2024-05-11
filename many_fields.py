@@ -48,8 +48,8 @@ data_array = [data.copy() for _ in range(required_number_of_records)]
 ndjson_header = '{ "index" : { "_index":"locust1" } }\n'
 # Create an ndjson file with 2 lines. First line should be ndjson_header and 2nd line should be data
 with open('data/30k_fields_10_records.ndjson', 'w') as f:
-    f.write(ndjson_header)
     for record in data_array:
+        f.write(ndjson_header)
         f.write(json.dumps(record) + '\n')
 
 
