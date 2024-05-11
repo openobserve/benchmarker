@@ -48,7 +48,7 @@ spec:
             git clone https://github.com/openobserve/benchmarker && 
             cd benchmarker && 
             pip install -r requirements.txt && 
-            locust --master --web-auth admin:admin -f locustfile_30k_fields_100_records.py
+            locust --master --web-auth admin:admin -f locustfile_30k_fields_10_records.py
         resources:
           limits:
             memory: "512Mi"
