@@ -27,15 +27,15 @@ data = {
     "stream": "stderr"
 }
 
-required_number_of_fields = 10000
-required_number_of_records = 100
+required_number_of_fields = 30000
+required_number_of_records = 10
 
 # Calculate how many dummy fields we need to add
 fields_to_add = required_number_of_fields - len(data)
 
 # Add dummy fields to reach 1000 fields
 for i in range(fields_to_add):
-    data[f"dummy_field_{i+1}"] = f"dummy_value_{i+1}"
+    data[f"dummy_field_lets_make_i_it_long_and_add_.dot_{i+1}"] = f"dummy_value_{i+1}"
 
 # Now create an array of 1000 objects with the new structure
 data_array = [data.copy() for _ in range(required_number_of_records)]
@@ -47,7 +47,7 @@ data_array = [data.copy() for _ in range(required_number_of_records)]
 
 ndjson_header = '{ "index" : { "_index":"locust1" } }\n'
 # Create an ndjson file with 2 lines. First line should be ndjson_header and 2nd line should be data
-with open('data.ndjson', 'w') as f:
+with open('data/30k_fields_10_records.ndjson', 'w') as f:
     f.write(ndjson_header)
     for record in data_array:
         f.write(json.dumps(record) + '\n')
