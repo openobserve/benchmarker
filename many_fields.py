@@ -27,8 +27,8 @@ data = {
     "stream": "stderr"
 }
 
-required_number_of_fields = 30000
-required_number_of_records = 1
+required_number_of_fields = 10000
+required_number_of_records = 100
 
 # Calculate how many dummy fields we need to add
 fields_to_add = required_number_of_fields - len(data)
