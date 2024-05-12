@@ -27,8 +27,8 @@ data = {
     "stream": "stderr"
 }
 
-required_number_of_fields = 15000
-required_number_of_records = 50
+required_number_of_fields = 30000
+required_number_of_records = 20
 
 # Calculate how many dummy fields we need to add
 fields_to_add = required_number_of_fields - len(data)
@@ -47,7 +47,7 @@ data_array = [data.copy() for _ in range(required_number_of_records)]
 
 ndjson_header = '{ "index" : { "_index":"locust1" } }\n'
 # Create an ndjson file with 2 lines. First line should be ndjson_header and 2nd line should be data
-with open('data/15k_fields_50_records.ndjson', 'w') as f:
+with open('data/30k_fields_20_records.ndjson', 'w') as f:
     for record in data_array:
         f.write(ndjson_header)
         f.write(json.dumps(record) + '\n')
