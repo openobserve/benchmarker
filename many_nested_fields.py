@@ -28,7 +28,7 @@ data = {
 }
 
 required_number_of_fields = 5000
-required_number_of_records = 100
+required_number_of_records = 50
 
 # Calculate how many dummy fields we need to add
 fields_to_add = required_number_of_fields - len(data)
@@ -57,7 +57,7 @@ data_array = [data.copy() for _ in range(required_number_of_records)]
 
 ndjson_header = '{ "index" : { "_index":"locust1" } }\n'
 # Create an ndjson file with 2 lines. First line should be ndjson_header and 2nd line should be data
-with open('data/5k_fields_100_nested_records.ndjson', 'w') as f:
+with open('data/5k_fields_50_nested_records.ndjson', 'w') as f:
     for record in data_array:
         f.write(ndjson_header)
         f.write(json.dumps(record) + '\n')
