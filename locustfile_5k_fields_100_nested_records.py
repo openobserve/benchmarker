@@ -14,7 +14,7 @@ class ZincUser(FastHttpUser):
     @task
     def insert_ndjson_data(self):
         ''' insert_data does a basic insert in zinc using _bulk api'''
-        data = open('data/5k_fields_200_nested_records.ndjson').read()
+        data = open('data/5k_fields_100_nested_records.ndjson').read()
 
         user = "root@aks.com"
         password = "SuperCo#138"
