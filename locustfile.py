@@ -15,7 +15,7 @@ class ZincUser(FastHttpUser):
         ''' insert_data does a basic insert in zinc using _bulk api'''
         data = open('data/ziox_multi_600.json').read()
 
-        user = "root@example.com"
+        user = "admin@example.com"
         password = "Complexpass@700"
 
         # user = "admin"
