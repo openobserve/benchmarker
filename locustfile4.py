@@ -10,7 +10,7 @@ class ZincUser(FastHttpUser):
     # wait_time = between(1, 5)  # Adjust as necessary
     connection_timeout = 600.0
     network_timeout = 600.0
-    host = "http://simdtest-openobserve-router.simdtest.svc.cluster.local:5080/api/default"
+    host = "http://simd-test-openobserve-router.simdtest.svc.cluster.local:5080/api/default"
 
     @task
     def query_basic_select(self):
