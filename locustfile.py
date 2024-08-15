@@ -7,7 +7,7 @@ class ZincUser(FastHttpUser):
  
     connection_timeout = 600.0
     network_timeout = 600.0
-    host = "http://simdtest-openobserve-router.simdtest.svc.cluster.local:5080/api/default"
+    host = "http://simd-test-openobserve-router.simdtest.svc.cluster.local:5080/api/default"
 
     
     @task
