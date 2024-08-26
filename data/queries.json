@@ -1,0 +1,136 @@
+{
+    "queries": [
+        {
+            "name": "query_basic_select",
+            "sql": "select * from default",
+            "from": 0,
+            "size": 10,
+            "start_time": "start_time_placeholder",
+            "end_time": "end_time_placeholder"
+        },
+        {
+            "name": "query_match_all",
+            "sql": "select * from default where match_all('fluent')",
+            "from": 0,
+            "size": 10,
+            "start_time": "start_time_placeholder",
+            "end_time": "end_time_placeholder"
+        },
+        {
+            "name": "query_histogram",
+            "sql": "select histogram(_timestamp, '10 second') AS zo_sql_key, count(*) AS zo_sql_num from default GROUP BY zo_sql_key ORDER BY zo_sql_key",
+            "from": 0,
+            "size": 10,
+            "sql_mode": "full",
+            "start_time": "start_time_placeholder",
+            "end_time": "end_time_placeholder"
+        },
+        {
+            "name": "query_limit",
+            "sql": "SELECT * FROM \"stream_pytest_data\" WHERE code=200 limit 5",
+            "start_time": 1719754035717000,
+            "end_time": 1719754035717000,
+            "from": 0,
+            "size": 150,
+            "sql_mode": "full"
+        },
+        {
+            "name": "query_count",
+            "sql": "SELECT service_name,_timestamp, COUNT(*) AS log_count FROM \"default\" GROUP BY service_name,_timestamp",
+            "start_time": "start_time_placeholder",
+            "end_time": "end_time_placeholder",
+            "from": 0,
+            "size": 250,
+            "quick_mode": true,
+            "sql_mode": "full"
+        },
+        {
+            "name": "query_distinct",
+            "sql": "SELECT DISTINCT kubernetes_container_name, _timestamp FROM \"e2e_automate\" ORDER BY _timestamp",
+            "start_time": "start_time_placeholder",
+            "end_time": "end_time_placeholder",
+            "from": 0,
+            "size": 250,
+            "quick_mode": false,
+            "sql_mode": "full"
+        },
+        {
+            "name": "query_having",
+            "sql": "SELECT histogram(_timestamp,'1 minutes') as eventtime1, COUNT(_timestamp) as totallogcount FROM \"default\" GROUP BY eventtime1 Having totallogcount > 100 ORDER BY eventtime1 DESC",
+            "start_time": "start_time_placeholder",
+            "end_time": "end_time_placeholder",
+            "from": 0,
+            "size": 100,
+            "quick_mode": false,
+            "sql_mode": "full"
+        },
+        {
+            "name": "query_countcase",
+            "sql": "SELECT histogram(_timestamp, '1 minutes') as eventtime1, COUNT(_timestamp) as totallogcount, COUNT(CASE WHEN body = 'error' THEN 1 END) as errorlogcount, (COUNT(CASE WHEN body = 'error' THEN 1 END) / COUNT(*) * 100.0) as errorrate FROM 'default' GROUP BY eventtime1 ORDER BY eventtime1 DESC",
+            "start_time": "start_time_placeholder",
+            "end_time": "end_time_placeholder",
+            "from": 0,
+            "size": 100,
+            "quick_mode": false,
+            "sql_mode": "full"
+        },
+        {
+            "name": "query_strmatchignorecase",
+            "sql": "Select histogram(_timestamp) as x_axis_1, count(k8s_pod_uid) as y_axis_1 from \"default\" where str_match_ignore_case(k8s_namespace_name, 'monitor') group by x_axis_1",
+            "start_time": "start_time_placeholder",
+            "end_time": "end_time_placeholder",
+            "from": 0,
+            "size": 100,
+            "quick_mode": false,
+            "sql_mode": "full"
+        },
+        {
+            "name": "query_likebreakdown",
+            "sql": "SELECT histogram(_timestamp) as \"x_axis_1\", count(_timestamp) as \"y_axis_1\", k8s_namespace_name as \"breakdown_1\" FROM \"default\" WHERE k8s_container_name LIKE '%a%' GROUP BY x_axis_1, breakdown_1 ORDER BY x_axis_1 DESC",
+            "start_time": "start_time_placeholder",
+            "end_time": "end_time_placeholder",
+            "from": 0,
+            "size": 100,
+            "quick_mode": false,
+            "sql_mode": "full"
+        },
+        {
+            "name": "query_in",
+            "sql": "SELECT * FROM \"default\" WHERE k8s_container_name IN ('controller', 'ziox') ORDER BY _timestamp DESC",
+            "start_time": "start_time_placeholder",
+            "end_time": "end_time_placeholder",
+            "from": 0,
+            "size": 100,
+            "quick_mode": false,
+            "sql_mode": "full"
+        },
+        {
+            "name": "query_strmatch",
+            "sql": "Select histogram(_timestamp) as x_axis_1, count(k8s_pod_uid) as y_axis_1 from \"default\" where str_match(k8s_namespace_name, 'monitor') group by x_axis_1",
+            "start_time": "start_time_placeholder",
+            "end_time": "end_time_placeholder",
+            "from": 0,
+            "size": 100,
+            "quick_mode": false,
+            "sql_mode": "full"
+        },
+        {
+            "name": "query_percentile",
+            "sql": "SELECT histogram(_timestamp, '30 seconds') as \"x_axis_1\", approx_percentile_cont(arrow_cast(k8s_container_restart_count,'Int64'), 0.99) as \"y_axis_1\" FROM \"default\" GROUP BY x_axis_1 ORDER BY x_axis_1 ASC",
+            "start_time": "start_time_placeholder",
+            "end_time": "end_time_placeholder",
+            "from": 0,
+            "size": 100,
+            "quick_mode": false,
+            "sql_mode": "full"
+        },
+        {
+            "name": "query_fluent",
+            "sql": "SELECT * FROM default where match_all('fluent')",
+            "from": 0,
+            "size": 10,
+            "start_time": "start_time_placeholder",
+            "end_time": "end_time_placeholder"
+        }
+    ]
+}
