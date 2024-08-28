@@ -25,9 +25,10 @@
             "start_time": "start_time_placeholder",
             "end_time": "end_time_placeholder"
         },
+       
         {
             "name": "query_limit",
-            "sql": "SELECT * FROM \"stream_pytest_data\" WHERE code=200 limit 5",
+            "sql": " SELECT * FROM \"default\" WHERE \"k8s_app_component\" = 'controller' LIMIT 50",
             "start_time": 1719754035717000,
             "end_time": 1719754035717000,
             "from": 0,
@@ -46,7 +47,7 @@
         },
         {
             "name": "query_distinct",
-            "sql": "SELECT DISTINCT kubernetes_container_name, _timestamp FROM \"e2e_automate\" ORDER BY _timestamp",
+            "sql": "SELECT DISTINCT k8s_app_component, _timestamp FROM \"default\" ORDER BY _timestamp",
             "start_time": "start_time_placeholder",
             "end_time": "end_time_placeholder",
             "from": 0,
