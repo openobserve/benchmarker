@@ -33,7 +33,12 @@ class ZincUser(FastHttpUser):
     def run_queries(self):
         for query in queries:
             # Replace placeholders with actual times
-            query['start_time'] = start_time
-            query['end_time'] = end_time
+            # query['start_time'] = start_time
+            # query['end_time'] = end_time
+            
+            # user fixed start and end time
+            # 2024-08-25T00:00:00Z - 2024-08-31T23:59:59Z
+            query['start_time'] = 1724515200000000
+            query['end_time'] = 1725119940000000
             
             self.client.post("/_search?type=logs&use_cache=true", name=f"/query/{query['name']}", json={"query": query}, headers=self.headers)
