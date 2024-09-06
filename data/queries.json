@@ -2,7 +2,7 @@
     "queries": [
         {
             "name": "query_basic_select",
-            "sql": "select * from default",
+            "sql": "SELECT * from default",
             "from": 0,
             "size": 10,
             "start_time": "start_time_placeholder",
@@ -10,7 +10,7 @@
         },
         {
             "name": "query_match_all",
-            "sql": "select * from default where match_all('fluent')",
+            "sql": "SELECT * from default where match_all('fluent')",
             "from": 0,
             "size": 10,
             "start_time": "start_time_placeholder",
@@ -18,7 +18,7 @@
         },
         {
             "name": "query_histogram",
-            "sql": "select histogram(_timestamp, '10 second') AS zo_sql_key, count(*) AS zo_sql_num from default GROUP BY zo_sql_key ORDER BY zo_sql_key",
+            "sql": "SELECT histogram(_timestamp, '10 second') AS zo_sql_key, count(*) AS zo_sql_num from default GROUP BY zo_sql_key ORDER BY zo_sql_key",
             "from": 0,
             "size": 10,
             "sql_mode": "full",
@@ -28,7 +28,7 @@
        
         {
             "name": "query_limit",
-            "sql": " SELECT * FROM \"default\" WHERE \"k8s_app_component\" = 'controller' LIMIT 50",
+            "sql": "SELECT * FROM \"default\" WHERE \"k8s_app_component\" = 'controller' LIMIT 50",
             "start_time": 1719754035717000,
             "end_time": 1719754035717000,
             "from": 0,
@@ -79,7 +79,7 @@
         },
         {
             "name": "query_strmatchignorecase",
-            "sql": "Select histogram(_timestamp) as x_axis_1, count(k8s_pod_uid) as y_axis_1 from \"default\" where str_match_ignore_case(k8s_namespace_name, 'monitor') group by x_axis_1",
+            "sql": "SELECT histogram(_timestamp) as x_axis_1, count(k8s_pod_uid) as y_axis_1 from \"default\" where str_match_ignore_case(k8s_namespace_name, 'monitor') group by x_axis_1",
             "start_time": "start_time_placeholder",
             "end_time": "end_time_placeholder",
             "from": 0,
@@ -109,7 +109,7 @@
         },
         {
             "name": "query_strmatch",
-            "sql": "Select histogram(_timestamp) as x_axis_1, count(k8s_pod_uid) as y_axis_1 from \"default\" where str_match(k8s_namespace_name, 'monitor') group by x_axis_1",
+            "sql": "SELECT histogram(_timestamp) as x_axis_1, count(k8s_pod_uid) as y_axis_1 from \"default\" where str_match(k8s_namespace_name, 'monitor') group by x_axis_1",
             "start_time": "start_time_placeholder",
             "end_time": "end_time_placeholder",
             "from": 0,
