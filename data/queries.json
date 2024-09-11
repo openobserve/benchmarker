@@ -4,7 +4,7 @@
             "name": "query_basic_select",
             "sql": "SELECT * from default",
             "from": 0,
-            "size": 10,
+            "size": 100,
             "start_time": "start_time_placeholder",
             "end_time": "end_time_placeholder"
         },
@@ -12,7 +12,7 @@
             "name": "query_match_all",
             "sql": "SELECT * from default where match_all('fluent')",
             "from": 0,
-            "size": 10,
+            "size": 100,
             "start_time": "start_time_placeholder",
             "end_time": "end_time_placeholder"
         },
@@ -20,7 +20,7 @@
             "name": "query_histogram",
             "sql": "SELECT histogram(_timestamp, '10 second') AS zo_sql_key, count(*) AS zo_sql_num from default GROUP BY zo_sql_key ORDER BY zo_sql_key",
             "from": 0,
-            "size": 10,
+            "size": 100,
             "sql_mode": "full",
             "start_time": "start_time_placeholder",
             "end_time": "end_time_placeholder"
@@ -32,7 +32,7 @@
             "start_time": 1719754035717000,
             "end_time": 1719754035717000,
             "from": 0,
-            "size": 150,
+            "size": 100,
             "sql_mode": "full"
         },
         {
@@ -41,7 +41,7 @@
             "start_time": "start_time_placeholder",
             "end_time": "end_time_placeholder",
             "from": 0,
-            "size": 250,
+            "size": 100,
             "quick_mode": true,
             "sql_mode": "full"
         },
@@ -53,7 +53,7 @@
             "start_time": "start_time_placeholder",
             "end_time": "end_time_placeholder",
             "from": 0,
-            "size": 250,
+            "size": 100,
             "quick_mode": false,
             "sql_mode": "full"
         },
@@ -129,9 +129,9 @@
         },
         {
             "name": "query_fluent",
-            "sql": "SELECT * FROM default where match_all('fluent')",
+            "sql": "SELECT * FROM default WHERE k8s_namespace_name='ingress-nginx' AND match_all('fluent')",
             "from": 0,
-            "size": 10,
+            "size": 100,
             "start_time": "start_time_placeholder",
             "end_time": "end_time_placeholder"
         }
