@@ -19,10 +19,10 @@ with open('data/queries.json', 'r') as f:
 class ZincUser(FastHttpUser):
     connection_timeout = 600.0
     network_timeout = 600.0
-    host = "http://perftest-openobserve-router.perftest.svc.cluster.local:5080/api/default"
+    host = "http://zo1-openobserve-router.perfb.svc.cluster.local:5080/api/default"
 
     user = "root@example.com"
-    password = "ac0dcdf1c5a1183bd78a9bdb67e18406"
+    password = "Complexpass@800"
     bas64encoded_creds = base64.b64encode(bytes(f"{user}:{password}", "utf-8")).decode("utf-8")
     headers = {
         'Authorization': 'Basic ' + bas64encoded_creds,
@@ -33,12 +33,12 @@ class ZincUser(FastHttpUser):
     def run_queries(self):
         for query in queries:
             # Replace placeholders with actual times
-            # query['start_time'] = start_time
-            # query['end_time'] = end_time
+            query['start_time'] = start_time
+            query['end_time'] = end_time
             
             # user fixed start and end time
             # 2024-08-25T00:00:00Z - 2024-08-31T23:59:59Z
-            query['start_time'] = 1724515200000000
-            query['end_time'] = 1725119940000000
+            # query['start_time'] = 1724515200000000
+            # query['end_time'] = 1725119940000000
             
             self.client.post("/_search?type=logs&use_cache=true", name=f"/query/{query['name']}", json={"query": query}, headers=self.headers)
