@@ -1,88 +1,44 @@
-import base64, json
+import base64
 import random
-
-from locust import FastHttpUser, task, tag, between
-
+import time
 import json
-import random
+from locust import FastHttpUser, task
+
+# Convert current time to epoch microseconds
+current_time_microseconds = int(time.time() * 1e6)
+
+# Subtract 1 week in microseconds
+one_week_microseconds = 7 * 24 * 60 * 60 * 1_000_000
+start_time = current_time_microseconds - one_week_microseconds
+end_time = current_time_microseconds
+
+# Load queries from JSON file
+with open('data/queries.json', 'r') as f:
+    queries = json.load(f)["queries"]
 
 class ZincUser(FastHttpUser):
-    # wait_time = between(1, 5)  # Adjust as necessary
     connection_timeout = 600.0
     network_timeout = 600.0
-    host = "http://simdtest-openobserve-router.simdtest.svc.cluster.local:5080/api/default"
+    host = "http://zo1-openobserve-router.perfb.svc.cluster.local:5080/api/default"
+
+    user = "root@example.com"
+    password = "Complexpass@800"
+    bas64encoded_creds = base64.b64encode(bytes(f"{user}:{password}", "utf-8")).decode("utf-8")
+    headers = {
+        'Authorization': 'Basic ' + bas64encoded_creds,
+        'Content-Type': 'application/json'
+    }
 
     @task
-    def query_basic_select(self):
-        data = {
-            "query": {
-                "sql": "select * from default",
-                "from": 0,
-                "size": 10,
-                "start_time": 1719754035717000,
-                "end_time": 1722432435717000
-            }
-        }
-
-        user = "root@example.com"
-        password = "Complexpass#123"
-        bas64encoded_creds = base64.b64encode(bytes(f"{user}:{password}", "utf-8")).decode("utf-8")
-
-        headers = {
-            'Authorization': 'Basic ' + bas64encoded_creds,
-            'Content-Type': 'application/json'
-        }
-
-        self.client.post("/_search?type=logs&use_cache=false", name="/query/base-select", json=data, headers=headers)
-
-
-    @task
-    def query_match_all(self):
-        data = {
-            "query": {
-                "sql": "select * from default where match_all('fluent')",
-                "from": 0,
-                "size": 10,
-                "start_time": 1719754035717000,
-                "end_time": 1722432435717000
-            }
-        }
-
-        user = "root@example.com"
-        password = "Complexpass#123"
-        bas64encoded_creds = base64.b64encode(bytes(f"{user}:{password}", "utf-8")).decode("utf-8")
-
-        headers = {
-            'Authorization': 'Basic ' + bas64encoded_creds,
-            'Content-Type': 'application/json'
-        }
-
-        self.client.post("/_search?type=logs&use_cache=false", name="/query/match_all", json=data, headers=headers)
-
-
-    @task
-    def query_histogram(self):
-        data = {
-            "query": {
-                "sql": "select histogram(_timestamp, '10 second') AS zo_sql_key, count(*) AS zo_sql_num from default GROUP BY zo_sql_key ORDER BY zo_sql_key",
-                "from": 0,
-                "size": 10,
-                "sql_mode": "full",
-                "start_time": 1719754035717000,
-                "end_time": 1722432435717000
-            }
-        }
-
-        user = "root@example.com"
-        password = "Complexpass#123"
-        bas64encoded_creds = base64.b64encode(bytes(f"{user}:{password}", "utf-8")).decode("utf-8")
-
-        headers = {
-            'Authorization': 'Basic ' + bas64encoded_creds,
-            'Content-Type': 'application/json'
-        }
-
-        self.client.post("/_search?type=logs&use_cache=false", name="/query/histogram", json=data, headers=headers)
-
-# locust -f locustfile.py
-# localhost::8089
+    def run_queries(self):
+        for query in queries:
+            # Replace placeholders with actual times
+            query['start_time'] = start_time
+            query['end_time'] = end_time
+            
+            # user fixed start and end time
+            # 2024-08-25T00:00:00Z - 2024-08-31T23:59:59Z
+            # query['start_time'] = 1724515200000000
+            # query['end_time'] = 1725119940000000
+            
+            self.client.post("/_search?type=logs&use_cache=true", name=f"/query/{query['name']}", json={"query": query}, headers=self.headers)
