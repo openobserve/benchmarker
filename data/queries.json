@@ -9,19 +9,19 @@
             "end_time": "end_time_placeholder"
         },
         {
-            "name": "query_match_all",
-            "sql": "SELECT * from default where match_all('fluent')",
-            "from": 0,
-            "size": 100,
-            "start_time": "start_time_placeholder",
-            "end_time": "end_time_placeholder"
-        },
-        {
             "name": "query_histogram",
             "sql": "SELECT histogram(_timestamp, '10 second') AS zo_sql_key, count(*) AS zo_sql_num from default GROUP BY zo_sql_key ORDER BY zo_sql_key",
             "from": 0,
             "size": 100,
             "sql_mode": "full",
+            "start_time": "start_time_placeholder",
+            "end_time": "end_time_placeholder"
+        },
+        {
+            "name": "query_match_all",
+            "sql": "SELECT * from default where match_all('fluent')",
+            "from": 0,
+            "size": 100,
             "start_time": "start_time_placeholder",
             "end_time": "end_time_placeholder"
         },

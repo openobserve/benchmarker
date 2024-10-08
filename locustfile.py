@@ -31,7 +31,9 @@ class ZincUser(FastHttpUser):
 
     @task
     def run_queries(self):
-        for query in queries:
+        for index, query in enumerate(queries):
+            if index == 2:
+                break
             # Replace placeholders with actual times
             # query['start_time'] = start_time
             # query['end_time'] = end_time
@@ -42,4 +44,3 @@ class ZincUser(FastHttpUser):
             query['end_time'] = 1727309100000000
             
             self.client.post("/_search?type=logs&use_cache=true", name=f"/query/{query['name']}", json={"query": query}, headers=self.headers)
-            break
