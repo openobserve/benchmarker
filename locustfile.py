@@ -42,3 +42,4 @@ class ZincUser(FastHttpUser):
             query['end_time'] = 1727309100000000
             
             self.client.post("/_search?type=logs&use_cache=true", name=f"/query/{query['name']}", json={"query": query}, headers=self.headers)
+            break
