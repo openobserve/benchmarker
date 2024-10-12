@@ -1,0 +1,49 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: locust-worker
+  namespace: perf2
+spec:
+  replicas: 10
+  selector:
+    matchLabels:
+      app: locust-worker
+  template:
+    metadata:
+      labels:
+        app: locust-worker
+    spec:
+      # affinity:
+      #   nodeAffinity: # place pods only on the specified instance type
+      #     requiredDuringSchedulingIgnoredDuringExecution:
+      #       nodeSelectorTerms:
+      #       - matchExpressions:
+      #         - key: eks.amazonaws.com/nodegroup
+      #           operator: In
+      #           values:
+      #           - zo-locust
+      #   podAntiAffinity:
+      #     preferredDuringSchedulingIgnoredDuringExecution:
+      #     - weight: 100
+      #       podAffinityTerm:
+      #         labelSelector:
+      #           matchExpressions:
+      #           - key: name
+      #             operator: In
+      #             values:
+      #             - zinc
+      #         topologyKey: topology.kubernetes.io/zone
+      containers:
+        - name: locust-worker
+          image: public.ecr.aws/docker/library/python:3.9.18-bookworm
+          command: ["/bin/sh", "-c"]
+          args:
+            - pip install locust &&
+              git clone https://github.com/openobserve/benchmarker &&
+              cd benchmarker &&
+              pip install -r requirements.txt &&
+              locust -f locustfile_ingest.py --worker --master-host=locust
+          resources:
+            limits:
+              memory: "800Mi"
+              cpu: "400m"
