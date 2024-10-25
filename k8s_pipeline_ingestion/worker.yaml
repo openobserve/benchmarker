@@ -2,7 +2,7 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: locust-worker
-  namespace: perf2
+  namespace: pipeline
 spec:
   replicas: 10
   selector:
@@ -42,7 +42,7 @@ spec:
               git clone https://github.com/openobserve/benchmarker &&
               cd benchmarker &&
               pip install -r requirements.txt &&
-              locust -f locustfile_ingest.py --worker --master-host=locust
+              locust -f locustfile_pipeline_perf.py --worker --master-host=locust
           resources:
             limits:
               memory: "800Mi"

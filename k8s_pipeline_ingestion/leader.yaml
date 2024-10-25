@@ -2,7 +2,7 @@ apiVersion: v1
 kind: Service
 metadata:
   name: locust
-  namespace: perf2
+  namespace: pipeline
 spec:
   clusterIP: None
   selector:
@@ -20,7 +20,7 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: locust-leader
-  namespace: perf2
+  namespace: pipeline
 spec:
   selector:
     matchLabels:
@@ -48,7 +48,7 @@ spec:
               git clone https://github.com/openobserve/benchmarker &&
               cd benchmarker &&
               pip install -r requirements.txt &&
-              locust --master --web-auth admin:admin -f locustfile_ingest.py
+              locust --master --web-auth admin:admin -f locustfile_pipeline_perf.py
           resources:
             limits:
               memory: "512Mi"

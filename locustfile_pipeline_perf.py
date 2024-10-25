@@ -12,8 +12,8 @@ class ZincUser(FastHttpUser):
 
     @task
     def insert_ndjson_data(self):
-        ''' insert_data does a basic insert in zinc using _multi api'''
-        data = open('data/ziox_multi_600.json').read()
+        ''' insert_data does a basic insert in zinc using _json api'''
+        data = open('data/k8slog_2.1MB.json').read()
 
         user = "root@example.com"
         password = "ac0dcdf1c5a1183bd78a9bdb67e18406"
@@ -25,4 +25,4 @@ class ZincUser(FastHttpUser):
         }
 
         self.client.post(
-            "/api/default/pipeline_perf/_multi", data=data, headers=headers)
+            "/api/default/pipeline_perf/_json", data=data, headers=headers)
