@@ -3,7 +3,7 @@ from locust import HttpUser, task, between
 
 class MonitorUser(HttpUser):
     wait_time = between(1, 3)  # Wait time between requests (1-3 sec)
-    #For Monitor
+
     user = "ashish@openobserve.ai"
     password = "sU4sOHkwpZwU5Rda"
     bas64encoded_creds = base64.b64encode(bytes(f"{user}:{password}", "utf-8")).decode("utf-8")
