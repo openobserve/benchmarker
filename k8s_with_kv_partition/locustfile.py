@@ -5,7 +5,7 @@ class MonitorUser(HttpUser):
     wait_time = between(1, 3)  # Wait time between requests (1-3 sec)
 
     user = "ashish@openobserve.ai"
-    password = "sU4sOHkwpZwU5Rda"
+    password = "aa"
     bas64encoded_creds = base64.b64encode(bytes(f"{user}:{password}", "utf-8")).decode("utf-8")
     headers = {
         'Authorization': 'Basic ' + bas64encoded_creds,
