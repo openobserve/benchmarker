@@ -36,7 +36,7 @@ def generate_random_value(field_type):
 class MonitorUser(HttpUser):
     wait_time = between(1, 3)
     user = "ashish@openobserve.ai"
-    password = "sU4sOHkwpZwU5Rda"
+    password = "dummy"
     bas64encoded_creds = base64.b64encode(bytes(f"{user}:{password}", "utf-8")).decode("utf-8")
     headers = {
         'Authorization': 'Basic ' + bas64encoded_creds,
