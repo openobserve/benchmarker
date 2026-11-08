@@ -1,3 +1,4 @@
+import os
 import base64, json
 import random
 
@@ -72,8 +73,8 @@ class O2User(FastHttpUser):
 
     @task
     def json_log_ingestion_f1(self):
-        user = "root@example.com"
-        password = "Complexpass#123"
+        user = os.environ.get("O2_USER", "root@example.com")
+        password = os.environ.get("O2_PASSWORD", "Complexpass#123")
         bas64encoded_creds = base64.b64encode(bytes(user + ":" + password, "utf-8")).decode("utf-8")
         headers = {
             'authorization': 'Basic ' + bas64encoded_creds, 
@@ -83,8 +84,8 @@ class O2User(FastHttpUser):
 
     @task
     def json_log_ingestion_f2(self):
-        user = "root@example.com"
-        password = "Complexpass#123"
+        user = os.environ.get("O2_USER", "root@example.com")
+        password = os.environ.get("O2_PASSWORD", "Complexpass#123")
         bas64encoded_creds = base64.b64encode(bytes(user + ":" + password, "utf-8")).decode("utf-8")
         headers = {
             'authorization': 'Basic ' + bas64encoded_creds, 
@@ -94,8 +95,8 @@ class O2User(FastHttpUser):
 
     @task
     def insert_ndjson_data(self):
-        user = "root@example.com"
-        password = "Complexpass#123"
+        user = os.environ.get("O2_USER", "root@example.com")
+        password = os.environ.get("O2_PASSWORD", "Complexpass#123")
         bas64encoded_creds = base64.b64encode(bytes(user + ":" + password, "utf-8")).decode("utf-8")
         headers = {
             'authorization': 'Basic ' + bas64encoded_creds, 

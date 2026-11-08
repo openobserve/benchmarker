@@ -1,3 +1,4 @@
+import os
 import base64, json
 import random
 
@@ -73,9 +74,6 @@ class ZincUser(FastHttpUser):
     # def search_basic(self):
     #     ''' search_basic does a basic search for a given query'''
     #     data = json.loads(open('data/query_ziox_sql.json').read())
-
-    #     user = "admin"
-    #     password = "Complexpass#123"
     #     bas64encoded_creds = base64.b64encode(bytes(user + ":" + password, "utf-8")).decode("utf-8")
 
     #     headers = {
@@ -88,9 +86,6 @@ class ZincUser(FastHttpUser):
     # def search_basic_match(self):
     #     ''' search_basic does a basic search for a given query'''
     #     data = json.loads(open('data/query_ziox_sql_match.json').read())
-
-    #     user = "admin"
-    #     password = "Complexpass#123"
     #     bas64encoded_creds = base64.b64encode(bytes(user + ":" + password, "utf-8")).decode("utf-8")
 
     #     headers = {
@@ -103,9 +98,6 @@ class ZincUser(FastHttpUser):
     # def search_basic_match_all(self):
     #     ''' search_basic does a basic search for a given query'''
     #     data = json.loads(open('data/query_ziox_sql_match_all.json').read())
-
-    #     user = "admin"
-    #     password = "Complexpass#123"
     #     bas64encoded_creds = base64.b64encode(bytes(user + ":" + password, "utf-8")).decode("utf-8")
 
     #     headers = {
@@ -118,9 +110,6 @@ class ZincUser(FastHttpUser):
     # def search_basic_match_all_case(self):
     #     ''' search_basic does a basic search for a given query'''
     #     data = json.loads(open('data/query_ziox_sql_match_all_case.json').read())
-
-    #     user = "admin"
-    #     password = "Complexpass#123"
     #     bas64encoded_creds = base64.b64encode(bytes(user + ":" + password, "utf-8")).decode("utf-8")
 
     #     headers = {
@@ -133,9 +122,6 @@ class ZincUser(FastHttpUser):
     # def search_basic_aggs_term(self):
     #     ''' search_basic does a basic search for a given query'''
     #     data = json.loads(open('data/query_ziox_sql_aggs_term.json').read())
-
-    #     user = "admin"
-    #     password = "Complexpass#123"
     #     bas64encoded_creds = base64.b64encode(bytes(user + ":" + password, "utf-8")).decode("utf-8")
 
     #     headers = {
@@ -148,9 +134,6 @@ class ZincUser(FastHttpUser):
     # def search_basic_aggs_histogram(self):
     #     ''' search_basic does a basic search for a given query'''
     #     data = json.loads(open('data/query_ziox_sql_aggs_histogram.json').read())
-
-    #     user = "admin"
-    #     password = "Complexpass#123"
     #     bas64encoded_creds = base64.b64encode(bytes(user + ":" + password, "utf-8")).decode("utf-8")
 
     #     headers = {
@@ -163,9 +146,6 @@ class ZincUser(FastHttpUser):
     # def multi_data(self):
     #     '''multi_data does a multi insert in zinc using multi api'''
     #     data = open('data/ziox_multi.json').read()
-
-    #     user = "admin"
-    #     password = "Complexpass#123"
     #     bas64encoded_creds = base64.b64encode(bytes(user + ":" + password, "utf-8")).decode("utf-8")
 
     #     headers = {
@@ -178,9 +158,6 @@ class ZincUser(FastHttpUser):
     # def insert_bulk_data(self):
     #     ''' insert_data does a basic insert in zinc using bulk api'''
     #     data =  open('data/bulk.ndjson').read()
-
-    #     user = "admin"
-    #     password = "Complexpass#123"
     #     # user = "admin"
     #     # password = "admin"
     #     bas64encoded_creds = base64.b64encode(bytes(user + ":" + password, "utf-8")).decode("utf-8")
@@ -196,9 +173,6 @@ class ZincUser(FastHttpUser):
     # def insert_bulkv2_data(self):
     #     ''' insert_data does a basic insert in zinc using bulkv2 api'''
     #     data =  json.loads(open('data/bulkv2.json').read())
-
-    #     user = "admin"
-    #     password = "Complexpass#123"
     #     # user = "admin"
     #     # password = "admin"
     #     bas64encoded_creds = base64.b64encode(bytes(user + ":" + password, "utf-8")).decode("utf-8")
@@ -214,9 +188,6 @@ class ZincUser(FastHttpUser):
     # def insert_multi_data(self):
     #     ''' insert_data does a basic insert in zinc using multi api'''
     #     data =  open('data/ziox_multi.json').read()
-
-    #     user = "root@example.com"
-    #     password = "Complexpass#123"
     #     # user = "admin"
     #     # password = "admin"
     #     bas64encoded_creds = base64.b64encode(bytes(user + ":" + password, "utf-8")).decode("utf-8")
@@ -232,10 +203,8 @@ class ZincUser(FastHttpUser):
         ''' insert_data does a basic insert in zinc using multi api'''
         data =  open('data/k8slog.json').read()
 
-        user = "root@example.com"
-        password = "Complexpass#123"
-        # user = "admin"
-        # password = "admin"
+        user = os.environ.get("O2_USER", "root@example.com")
+        password = os.environ.get("O2_PASSWORD", "Complexpass#123")
         bas64encoded_creds = base64.b64encode(bytes(user + ":" + password, "utf-8")).decode("utf-8")
 
         headers = {
@@ -248,9 +217,6 @@ class ZincUser(FastHttpUser):
     # def insert_ndjson_data(self):
     #     ''' insert_data does a basic insert in zinc using multi api'''
     #     data =  open('data/k8slog.ndjson').read()
-
-    #     user = "Wq9I9owBuYyq6Mnb7M-E"
-    #     password = "Me2kGXlAQ-eWZrL6ZXzjLw"
     #     # user = "admin"
     #     # password = "admin"
     #     bas64encoded_creds = base64.b64encode(bytes(user + ":" + password, "utf-8")).decode("utf-8")

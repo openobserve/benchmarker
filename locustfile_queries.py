@@ -1,3 +1,4 @@
+import os
 import base64
 import random
 import time
@@ -21,8 +22,8 @@ class ZincUser(FastHttpUser):
     network_timeout = 600.0
     host = "http://zo1-openobserve-router.perfb.svc.cluster.local:5080/api/default"
 
-    user = "root@example.com"
-    password = "Complexpass@800"
+    user = os.environ.get("O2_USER", "root@example.com")
+    password = os.environ.get("O2_PASSWORD", "Complexpass#123")
     bas64encoded_creds = base64.b64encode(bytes(f"{user}:{password}", "utf-8")).decode("utf-8")
     headers = {
         'Authorization': 'Basic ' + bas64encoded_creds,
