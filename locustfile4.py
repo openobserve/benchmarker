@@ -1,3 +1,4 @@
+import os
 import base64, json
 import random
 
@@ -24,8 +25,8 @@ class ZincUser(FastHttpUser):
             }
         }
 
-        user = "root@example.com"
-        password = "Complexpass#123"
+        user = os.environ.get("O2_USER", "root@example.com")
+        password = os.environ.get("O2_PASSWORD", "Complexpass#123")
         bas64encoded_creds = base64.b64encode(bytes(f"{user}:{password}", "utf-8")).decode("utf-8")
 
         headers = {
@@ -48,8 +49,8 @@ class ZincUser(FastHttpUser):
             }
         }
 
-        user = "root@example.com"
-        password = "Complexpass#123"
+        user = os.environ.get("O2_USER", "root@example.com")
+        password = os.environ.get("O2_PASSWORD", "Complexpass#123")
         bas64encoded_creds = base64.b64encode(bytes(f"{user}:{password}", "utf-8")).decode("utf-8")
 
         headers = {
@@ -73,8 +74,8 @@ class ZincUser(FastHttpUser):
             }
         }
 
-        user = "root@example.com"
-        password = "Complexpass#123"
+        user = os.environ.get("O2_USER", "root@example.com")
+        password = os.environ.get("O2_PASSWORD", "Complexpass#123")
         bas64encoded_creds = base64.b64encode(bytes(f"{user}:{password}", "utf-8")).decode("utf-8")
 
         headers = {

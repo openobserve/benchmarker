@@ -1,3 +1,4 @@
+import os
 import base64, json
 import random
 
@@ -16,10 +17,8 @@ class ZincUser(FastHttpUser):
         ''' insert_data does a basic insert in zinc using _bulk api'''
         data = open('data/30k_fields_10_records.ndjson').read()
 
-        user = "root@aks.com"
-        password = "SuperCo#138"
-        # user = "admin"
-        # password = "admin"
+        user = os.environ.get("O2_USER", "root@example.com")
+        password = os.environ.get("O2_PASSWORD", "Complexpass#123")
         bas64encoded_creds = base64.b64encode(bytes(user + ":" + password, "utf-8")).decode("utf-8")
 
         headers = {

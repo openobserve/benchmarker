@@ -18,6 +18,11 @@ kubectl apply -f k8s2/worker.yaml
 
 Worker manifest sets worker count to 10. You can change that based on your needs.
 
+The locustfiles read the OpenObserve login from the `O2_USER` and `O2_PASSWORD`
+environment variables (Elasticsearch runs use `ES_USER` and `ES_PASSWORD`). Set them
+on the worker pods, for example from a Kubernetes Secret. Never commit real credentials.
+Without them, the scripts fall back to the local default `root@example.com` / `Complexpass#123`.
+
 Now let's go to the UI:
 
 ```shell

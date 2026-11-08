@@ -1,3 +1,4 @@
+import os
 import base64, json
 import random
 
@@ -16,10 +17,8 @@ class ZincUser(FastHttpUser):
         ''' insert_data does a basic insert in zinc using multi api'''
         data =  open('data/k8slog.ndjson').read()
 
-        user = "elastic"
-        password = "gkJDTm3U7u0YJhULQPkPf2mI"
-        # user = "admin"
-        # password = "admin"
+        user = os.environ.get("ES_USER", "elastic")
+        password = os.environ.get("ES_PASSWORD", "")
         bas64encoded_creds = base64.b64encode(bytes(user + ":" + password, "utf-8")).decode("utf-8")
 
         headers = {
